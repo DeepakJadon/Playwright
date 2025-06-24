@@ -27,6 +27,7 @@ class CartPage
         console.log(countText);
         return parseInt(countText, 10);
             }
+            else
             return 0; // if cart is empty 
 }
     

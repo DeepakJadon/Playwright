@@ -8,7 +8,8 @@ import { CartPage } from '../pages/CartPage';
 
 
 
-test('Verify the sorting order displayed for Z-A on the “All Items” page',async ({page}) => {
+test('Verify the sorting order displayed for Z-A on the “All Items” page',
+   {annotation: [ {type :'info' , description : 'Product sorting'}],tag: ['@smoke']},async ({page}) => {
 
     const Login = new LoginPage(page);
     const Home = new HomePage(page);
@@ -30,7 +31,7 @@ test('Verify the sorting order displayed for Z-A on the “All Items” page',as
 
 
 
-test('Verify the price order (high-low) displayed on the “All Items” page',async ({page}) => {
+test('Verify the price order (high-low) displayed on the “All Items” page@sanity',async ({page}) => {
 
    const Login = new LoginPage(page);
    const Home = new HomePage(page);
@@ -79,7 +80,6 @@ test('Add multiple items to the cart and validate the checkout journey',async ({
     await Login.login("standard_user","secret_sauce");
     await page.waitForTimeout(1000);
     await Home.addProductToCart("Sauce Labs Backpack");
-    await page.goBack();
     await page.waitForTimeout(1000);
     await Home.addProductToCart("Sauce Labs Bike Light");
     await page.waitForTimeout(1000);
