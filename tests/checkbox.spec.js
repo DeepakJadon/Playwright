@@ -21,8 +21,10 @@ test('click checkbox', async({customPage}) => {
       await customPage.getByRole('textbox', { name: 'Search for Products, Brands' }).fill("mobiles");
       await customPage.keyboard.press("Enter");
       await checkBrandBox(customPage,"Apple");
-      await customPage.getByText('Apple', { exact: true }).click();
-      await expect(customPage.getByText('Apple', { exact: true }, {timeout:6000})).toBeChecked();
+      await customPage.waitForTimeout(2000);
+      await customPage.locator('xpath=//div[contains(text(),"Apple")]').click();
+      await customPage.waitForTimeout(2000);
+      await expect(customPage.locator('xpath=//div[contains(text(),"Apple")]').nth(1)).toBeChecked();
 
 });
 

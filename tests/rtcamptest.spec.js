@@ -4,7 +4,8 @@ import { HomePage } from '../pages/HomePage';
 import { CartPage } from '../pages/CartPage';
 
 
- 
+ test.describe('Smoke', ()=> {});
+ test.describe('Regression', ()=> {});
 
 
 
