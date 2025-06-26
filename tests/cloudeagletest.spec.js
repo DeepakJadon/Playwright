@@ -24,28 +24,33 @@ test('Verify Count',async ({page}) =>
    await page.keyboard.press('ArrowDown');
     }
     await page.waitForTimeout(6000);
-   await page.click('.tableBodyWrapper'); 
-   for (let i = 0; i < 15; i++) 
-    {
-   await page.keyboard.press('ArrowDown');
-   allLinks = page.locator('a');
+    await page.click('.tableBodyWrapper'); 
+    await page.keyboard.press('ArrowDown');
+    allLinks = page.locator('a');
           finalRows= await allLinks.count();
           console.log(finalRows)
-   await page.keyboard.press('ArrowDown');
-   allLinks = page.locator('a');
+    await page.keyboard.press('ArrowDown');
+    allLinks = page.locator('a');
           finalRows= await allLinks.count();
           console.log(finalRows)
-   await page.keyboard.press('ArrowDown');
-   allLinks = page.locator('a');
+    await page.keyboard.press('ArrowDown');
+    allLinks = page.locator('a');
           finalRows= await allLinks.count();
           console.log(finalRows)
-   await page.keyboard.press('ArrowDown');
-   allLinks = page.locator('a');
+    await page.keyboard.press('ArrowDown');
+    allLinks = page.locator('a');
           finalRows= await allLinks.count();
           console.log(finalRows)
-   await page.waitForTimeout(100);
-    
-   }
+    await page.waitForTimeout(100);
+    await page.keyboard.press('ArrowDown');
+    allLinks = page.locator('a');
+          finalRows= await allLinks.count();
+          console.log(finalRows)
+          await page.waitForTimeout(100);
+          await page.keyboard.press('ArrowDown');
+   
+  
+  // }
           
     await page.waitForTimeout(2000);
     expect(counttext).toBe(finalRows.toString());

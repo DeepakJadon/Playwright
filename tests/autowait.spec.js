@@ -18,9 +18,6 @@ test('click on green btn', async({page})=>
   await  expect(greentxt).toContain("Data loaded with AJAX get request.");
 });
 
-test.afterAll( async({page}) =>
-{
- await page.close();
-});
+
 
 
