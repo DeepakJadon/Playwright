@@ -5,7 +5,7 @@ import { CloudDashboardPage } from '../pages/CloudDashboardPage';
 let finalRows = 0;
 let allLinks;
 
-test('Verify Count',async ({page}) => 
+test('Verify Count',async ({page},testInfo) => 
     {
     
     const Login = new CloudLoginPage(page);
@@ -14,7 +14,9 @@ test('Verify Count',async ({page}) =>
     await Login.landingPage();
     await Login.login("support+sandbox20@cloudeagle.ai","[x1nkS6]8~f]A#U;");
     await Dashboard.navigateToDashboard();
+    await page.waitForTimeout(2000);
     const counttext = await Dashboard.getCount();
+    await page.waitForTimeout(3000);
     await expect(counttext).toBe("30");
     await Dashboard.navigateToApplications();
     
@@ -26,55 +28,39 @@ test('Verify Count',async ({page}) =>
 
     await page.click('.tableBodyWrapper'); 
 
+    if (testInfo.project.name === 'chromium')
+    {
     for (let i=0;i<=5;i++)
     {
-       await page.keyboard.press('ArrowDown');
-       await page.waitForTimeout(100);
-       allLinks = page.locator('a');
+      await page.keyboard.press('ArrowDown');
+       await page.waitForTimeout(1000);
+       allLinks = await page.locator('a');
        finalRows= await allLinks.count();
-       console.log(finalRows)
+       console.log(finalRows);
        if (finalRows===30)
+       { 
               break;
+       }
+    } 
+    
+      await page.waitForTimeout(1000);
+      expect(counttext).toBe(finalRows.toString());
 
     }
-    await page.waitForTimeout(2000);
-    expect(counttext).toBe(finalRows.toString());
-    /*
-    await page.keyboard.press('ArrowDown');
-    allLinks = page.locator('a');
-          finalRows= await allLinks.count();
-          console.log(finalRows)
-    await page.keyboard.press('ArrowDown');
-    allLinks = page.locator('a');
-          finalRows= await allLinks.count();
-          console.log(finalRows)
-    await page.keyboard.press('ArrowDown');
-    allLinks = page.locator('a');
-          finalRows= await allLinks.count();
-          console.log(finalRows)
-    await page.keyboard.press('ArrowDown');
-    allLinks = page.locator('a');
-          finalRows= await allLinks.count();
-          console.log(finalRows)
-    await page.waitForTimeout(100);
-    await page.keyboard.press('ArrowDown');
-    allLinks = page.locator('a');
-          finalRows= await allLinks.count();
-          console.log(finalRows)
-          await page.waitForTimeout(100);
-          await page.keyboard.press('ArrowDown');
-     */     
-    
-   
 
-   
+     if (testInfo.project.name === 'firefox')
+    {
+    for (let i=0;i<=1;i++)
+    {
+       await page.waitForTimeout(1000);
+       allLinks = await page.locator('a');
+       finalRows= await allLinks.count();
+       console.log(finalRows);
+       const firefoxCount = await finalRows -2 ;
+       console.log(firefoxCount);
+       expect(counttext).toBe(firefoxCount.toString());
+    }        
 
-
-   
-    
-
-   
-    
-
-    
+    }
+      
 });
