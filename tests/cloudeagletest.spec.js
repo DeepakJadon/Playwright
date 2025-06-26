@@ -23,8 +23,23 @@ test('Verify Count',async ({page}) =>
     {
    await page.keyboard.press('ArrowDown');
     }
-    await page.waitForTimeout(6000);
+
     await page.click('.tableBodyWrapper'); 
+
+    for (let i=0;i<=5;i++)
+    {
+       await page.keyboard.press('ArrowDown');
+       await page.waitForTimeout(100);
+       allLinks = page.locator('a');
+       finalRows= await allLinks.count();
+       console.log(finalRows)
+       if (finalRows===30)
+              break;
+
+    }
+    await page.waitForTimeout(2000);
+    expect(counttext).toBe(finalRows.toString());
+    /*
     await page.keyboard.press('ArrowDown');
     allLinks = page.locator('a');
           finalRows= await allLinks.count();
@@ -48,12 +63,8 @@ test('Verify Count',async ({page}) =>
           console.log(finalRows)
           await page.waitForTimeout(100);
           await page.keyboard.press('ArrowDown');
-   
-  
-  // }
-          
-    await page.waitForTimeout(2000);
-    expect(counttext).toBe(finalRows.toString());
+     */     
+    
    
 
    
