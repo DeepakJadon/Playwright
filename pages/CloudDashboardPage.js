@@ -26,6 +26,7 @@ class CloudDashboardPage
 
         async getCount()
         {
+              
             const count = await this.page.locator(this.count).textContent();
             return count;
             

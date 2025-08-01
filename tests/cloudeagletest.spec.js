@@ -2,8 +2,8 @@ import {test,expect,chromium} from '@playwright/test'
 import { CloudLoginPage } from '../pages/CloudLoginPage';
 import { CloudDashboardPage } from '../pages/CloudDashboardPage';
 
-let finalRows = 0;
-let allLinks;
+
+let allDivs = [];
 
 test('Verify Count',async ({page},testInfo) => 
     {
@@ -19,48 +19,37 @@ test('Verify Count',async ({page},testInfo) =>
     await page.waitForTimeout(3000);
     await expect(counttext).toBe("30");
     await Dashboard.navigateToApplications();
-    
+    await page.waitForTimeout(12000);
     await page.click('#app-container');
-    for (let i = 0; i < 6; i++)
-    {
-   await page.keyboard.press('ArrowDown');
-    }
-
-    await page.click('.tableBodyWrapper'); 
-
-    if (testInfo.project.name === 'chromium')
-    {
-    for (let i=0;i<=5;i++)
-    {
-      await page.keyboard.press('ArrowDown');
-       await page.waitForTimeout(1000);
-       allLinks = await page.locator('a');
-       finalRows= await allLinks.count();
-       console.log(finalRows);
-       if (finalRows===30)
-       { 
-              break;
-       }
-    } 
     
-      await page.waitForTimeout(1000);
-      expect(counttext).toBe(finalRows.toString());
 
-    }
+    for (let j = 0; j < 10; j++)
+      {
 
-     if (testInfo.project.name === 'firefox')
-    {
-    for (let i=0;i<=1;i++)
-    {
-       await page.waitForTimeout(1000);
-       allLinks = await page.locator('a');
-       finalRows= await allLinks.count();
-       console.log(finalRows);
-       const firefoxCount = await finalRows -2 ;
-       console.log(firefoxCount);
-       expect(counttext).toBe(firefoxCount.toString());
-    }        
+        
+        const element  = await page.locator(`div[data-index=\"${j}\"]`);
+        await element.scrollIntoViewIfNeeded();
+        await page.waitForTimeout(500);
+         if (await element.isVisible()) 
+        {
+        allDivs.push(element);
+        } 
+        else
+        {
+        console.log(`Element at index ${j} not found or not visible.`);
+        }
+         await page.waitForTimeout(5000); 
+         await page.click("div[class='styles_pageOptionWrapper__1oRxq'] button:nth-child(4)");
+         await page.waitForTimeout(5000);
+         await page.click("div[class='styles_pageOptionWrapper__1oRxq'] button:nth-child(4)");
+        
+         if (allDivs.length=30)
+          break;
 
-    }
+}
+
+       console.log(`Total elements captured: ${allDivs.length}`);
+       expect(counttext).toBe(allDivs.length.toString());
+
       
 });
