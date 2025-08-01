@@ -1,2 +1,1 @@
-# testscripts-rotimatic.com
-web automation
+# web automation
