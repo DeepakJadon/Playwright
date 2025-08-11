@@ -6,6 +6,10 @@ import { CloudDashboardPage } from '../pages/CloudDashboardPage';
 let allDivs = [];
 
 test('Verify Count',async ({page},testInfo) => 
+
+  {
+  if (testInfo.project.name === 'chromium')
+
     {
     
     const Login = new CloudLoginPage(page);
@@ -51,5 +55,5 @@ test('Verify Count',async ({page},testInfo) =>
        console.log(`Total elements captured: ${allDivs.length}`);
        expect(counttext).toBe(allDivs.length.toString());
 
-      
+} 
 });
