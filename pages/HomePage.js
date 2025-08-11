@@ -9,7 +9,7 @@ class HomePage
         this.productlist = '.inventory_item_name';
         this.productprice = '.inventory_item_price';
         this.addtocart = 'xpath=//button[@id="add-to-cart"]';   
-    }
+        }
 
     async dropdownClick()
     {

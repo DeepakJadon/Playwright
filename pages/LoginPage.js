@@ -1,33 +1,32 @@
-   class LoginPage
-{
-    constructor (page)
-    {
-        this.page=page;
-        this.username='xpath=//input[@id="user-name"]';
-        this.userpwd='xpath=//input[@id="password"]';
-        this.loginButton='xpath=//input[@id="login-button"]';
+class LoginPage {
 
-        
+    constructor(page) {
+        this.page = page;
     }
 
+    get usernameField() {
+        return this.page.locator('//input[@id="user-name"]');
+    }
 
-    async landingPage()
-        {
-            console.log("Visit Demo website");
-            await this.page.goto('https://www.saucedemo.com/');
-        }
+    get passwordField() {
+        return this.page.locator('//input[@id="password"]');
+    }
 
-        async login(username,password)
-        {
-             console.log("Login to website");
-             await this.page.locator(this.username).fill(username);
-             await this.page.locator(this.userpwd).fill(password);
-             await this.page.locator(this.loginButton).click();
+    get loginButton() {
+        return this.page.locator('//input[@id="login-button"]');
+    }
 
-        }
+    async landingPage() {
+        console.log("Visit Demo website");
+        await this.page.goto('https://www.saucedemo.com/');
+    }
 
-        
-
+    async login(username, password) {
+        console.log("Login to website");
+        await this.usernameField.fill(username);
+        await this.passwordField.fill(password);
+        await this.loginButton.click();
+    }
 }
 
-module.exports= {LoginPage};
+module.exports = { LoginPage };

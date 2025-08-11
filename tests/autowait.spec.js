@@ -15,7 +15,7 @@ test('click on green btn', async({page})=>
   const successmsg= await page.getByText('Data loaded with AJAX get request.');
   await successmsg.waitFor({state:'visible'});
   const greentxt = await successmsg.allTextContents();
-  await  expect(greentxt).toContain("Data loaded with AJAX get request.");
+  await expect(greentxt).toContain("Data loaded with AJAX get request.");
 });
 
 

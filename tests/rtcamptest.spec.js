@@ -4,13 +4,14 @@ import { HomePage } from '../pages/HomePage';
 import { CartPage } from '../pages/CartPage';
 
 
- test.describe('Smoke', ()=> {});
- test.describe('Regression', ()=> {});
+
+
+ //test.describe('Smoke', ()=> {});
+ //test.describe('Regression', ()=> {});
 
 
 
-test('Verify the sorting order displayed for Z-A on the “All Items” page',
-   {annotation: [ {type :'info' , description : 'Product sorting'}],tag: ['@smoke']},async ({page}) => {
+test('Verify the sorting order displayed for Z-A on the “All Items” page',async ({page}) => {
 
     const Login = new LoginPage(page);
     const Home = new HomePage(page);

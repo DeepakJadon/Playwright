@@ -2,6 +2,8 @@ import { test as base } from '@playwright/test';
 import { chromium } from 'playwright';
 
 // Extend the base test
+
+
  export const test = base.extend(
     {
   // This fixture will be available in your tests as `customPage`
@@ -18,4 +20,5 @@ import { chromium } from 'playwright';
   }
 });
 
+  
 
