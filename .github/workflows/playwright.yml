@@ -2,9 +2,9 @@ name: Run Playwright Tests
 
 on:
   push:
-    branches: [webtest-scripts]
+    branches: [n8n-trigger]
   pull_request:
-    branches: [webtest-scripts]
+    branches: [n8n-trigger]
   workflow_dispatch:  
 
 jobs:
