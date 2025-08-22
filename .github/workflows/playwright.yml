@@ -5,6 +5,7 @@ on:
     branches: [webtest-scripts]
   pull_request:
     branches: [webtest-scripts]
+  workflow_dispatch:  
 
 jobs:
   test:
