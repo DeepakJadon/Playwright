@@ -6,7 +6,7 @@ import { chromium } from 'playwright';
 
  export const test = base.extend(
     {
-  // This fixture will be available in your tests as `customPage`
+  //custom fixture
   customPage: async ({}, use) => {
     const browser = await chromium.launch();
     const context = await browser.newContext();

@@ -11,7 +11,7 @@ import { CartPage } from '../pages/CartPage';
 
 
 
-test('Verify the sorting order displayed for Z-A on the “All Items” page',async ({page}) => {
+test('@smoke - Verify the sorting order displayed for Z-A on the “All Items” page',async ({page}) => {
 
     const Login = new LoginPage(page);
     const Home = new HomePage(page);

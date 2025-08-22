@@ -12,7 +12,8 @@ import { defineConfig, devices } from '@playwright/test';
 /**
  * @see https://playwright.dev/docs/test-configuration
  */
-export default defineConfig({
+export default defineConfig(
+  {
   timeout: 90000,
   testDir: './tests',
   /* Run tests in files in parallel */
@@ -22,7 +23,7 @@ export default defineConfig({
   /* Retry on CI only */
   retries: process.env.CI ? 2 : 1,
   /* Opt out of parallel tests on CI. */
-  workers: process.env.CI ? 1 : undefined,
+  workers: process.env.CI ? 1 : 4,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   //reporter: 'html',
   reporter: 
@@ -40,12 +41,15 @@ export default defineConfig({
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
     // baseURL: 'http://127.0.0.1:3000',
-    screenshot:'on',
+    screenshot:'only-on-failure',
+    trace: 'retain-on-failure',
+    video:'retain-on-failure',
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
-    trace: 'on',
+    
   },
 
+  
   /* Configure projects for major browsers */
   projects: [
     {
@@ -55,12 +59,19 @@ export default defineConfig({
 
     {
       name: 'firefox',
-      use: { ...devices['Desktop Firefox'] },
-    },
+      use: 
+      { 
+        ...devices['Desktop Firefox'] },
+    
+      },
 
     {
       name: 'webkit',
-      use: { ...devices['Desktop Safari'] },
+      use: 
+      { 
+        ...devices['Desktop Safari'] 
+
+      },
     },
 
     /* Test against mobile viewports. */
