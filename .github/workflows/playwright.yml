@@ -4,7 +4,7 @@ on:
   push:
     branches: [webtest-scripts]
   pull_request:
-    branches: [n8n-trigger]
+    branches: [webtest-scripts]
 
 jobs:
   test:
