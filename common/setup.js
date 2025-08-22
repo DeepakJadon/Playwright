@@ -6,7 +6,7 @@ import { chromium } from 'playwright';
 
  export const test = base.extend(
     {
-  //custom fixture
+  // create custom fixture 
   customPage: async ({}, use) => {
     const browser = await chromium.launch();
     const context = await browser.newContext();
