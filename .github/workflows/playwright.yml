@@ -2,7 +2,7 @@ name: Run Playwright Tests
 
 on:
   push:
-    branches: [n8n-trigger]
+    branches: [webtest-scripts]
   pull_request:
     branches: [n8n-trigger]
 
